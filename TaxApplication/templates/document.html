@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Upload your PDF</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="pdfFile">Select PDF:</label>
+        <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" required>
+        <br><br>
+
+        <label for="apiKey">Enter Google API Key:</label>
+        <input type="password" id="apiKey" name="apiKey">
+        <br><br>
+        
+        <input type="submit" value="Upload PDF">
+    </form>
+   
+    {% if llm_response %}
+        <hr>
+        <h2>Analysis:</h2>
+        <pre>{{ llm_response|safe }}</pre>
+    {% endif %}
+
+    {% if document_contents %}
+        <hr>
+        <h2>Extracted Content:</h2>
+        <pre>{{ document_contents|safe }}</pre>
+    {% endif %}
+</body>
+</html>
